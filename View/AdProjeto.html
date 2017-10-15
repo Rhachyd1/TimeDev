@@ -1,0 +1,58 @@
+<html>
+    <head>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script type="text/Javascript" src="../Javascript/AdProjeto/adProjeto.js"></script>
+            <link rel="stylesheet" type="text/css" href="../CSS/AdProjeto.css">
+    </head>
+
+    <body onload="inicio()">
+        <button onclick="esconde('visualizar')"> visualiza </button>
+        <button onclick="exibeJson()"> Exibir </button>
+        <span>
+        <div id="visualizar">
+            <label><h3>Visualiza Projeto (aquiTemUpdate) </h3></label>
+            <table id="view">
+            <tr>
+                <th><label>IdProjeto</label> </th>
+                <th><label>Fase</label> </th>
+                <th><label>DtInicio</label> </th>
+                <th><label>DtFim</label> </th>
+                <th><label>NomeProjeto</label> </th>
+                <th><label>DtProrrogada</label></th>
+            </tr>
+           </table>
+        </span>
+    </div>
+
+            <label><h3>Insere Projeto(nãoHaProrrogaçãoAqui) </h3></label>
+            <button onclick="esconde('inserir')"> visualiza </button>
+            <div id="inserir" onload="montaSelect()">            
+            <span>
+            <table>
+                <tr>
+                 
+                 <th><label>Fase</label> </th>
+                 <th><label>DtInicio</label> </th>
+                 <th><label>DtFim</label> </th>
+                 <th><label>NomeProjeto</label> </th>                 
+                 <th><label>Painel</label></th>
+                </tr>                        
+             <tr>
+               <form method="POST" id= "formulario" action="../Controller/ctrlProjeto.php">
+                    <td> <select name="selfase" id = "fase">
+                            <option value = "INICIO">Inicio</option>
+                            <option value = "MEIO">Meio</option>
+                            <option value = "FIM">Fim</option>
+                        </select> </td>
+                    <td> <input name ="dtIn" id="dtInicio" type="date"></input>  </td>
+                    <td> <input name = "dtFm" id="dtFim" type="date" onChange="ValidaData()"></input>  </td>
+                    <td> <input name ="nm" id="Nome" type="text"></input>  </td>
+                   
+                    <td> <button onclick="enviar()"> enviar </button> <button onclick="limpar()"> limpar </button> </td>
+               </form>
+             </tr>      
+            </table>
+        </span>
+        </div>
+    </body>
+</html>

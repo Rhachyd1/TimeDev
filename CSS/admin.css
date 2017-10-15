@@ -1,0 +1,13 @@
+#menu{
+   background: linear-gradient(white, lightblue);
+   width: 200px;   
+   align-content: center;
+}
+button{   
+    padding:20px;
+    margin: 10px;
+    text-align:center;
+    color: white;
+    background-color: lightblue;
+    border: none;
+}
