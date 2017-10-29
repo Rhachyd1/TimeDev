@@ -34,6 +34,26 @@ public function Login($l, $s){
         }
        
 }
+public function buscaId($l, $s){
+    $con = new Conexao();
+    
+    $query = $con->retornaConexao();    
+    $sql= "SELECT IDEMPREGADO FROM EMPREGADO WHERE LOGIN = '$l' AND SENHA = '$s'";
+    $result = $query->query($sql);
+    $id=null;   
+    try{
+        while($linha = $result->fetch(PDO::FETCH_ASSOC) ){
+          $id = $linha['IDEMPREGADO'];
+            
+         }
+        }catch(PDOException $e){
+       // print($e);
+        $id=null;
+        exit("Error: " . $e->getMessage() );
+        }    
+    
+    return $id;
+}
 public function exibeUsuario($id){
         $con = new Conexao();
         

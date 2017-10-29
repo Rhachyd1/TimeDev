@@ -22,15 +22,15 @@
 </div>
 <div>
     <h3> Dados Endereço Usuario </h3>
-    Rua: <input type="text"> </input> <br>
-    Bairro: <input type="text"> </input> <br>
-    Estado: <select id="sEstado" >
-            <option>RJ</option>
-            <option>SP</option>
-            <option>BH</option>
-            <option>MG</option>
+    Rua: <input type="text" id="txtRua"> </input> <br>
+    Bairro: <input type="text"id="txtBairro"> </input> <br>
+    Estado: <select name="selEstado" id="vlEstado" >
+            <option value="RJ">RJ</option>
+            <option value="SP">SP</option>
+            <option value="BH">BH</option>
+            <option value="MG">MG</option>
             </select> <br>
-    Telefone Residencial: <input type="text"> </input> <br>
+    Telefone Residencial: <input type="text"id="txtTelRes"> </input> <br>
   
 </div>
 <button type="button"value="Enviar" name="btEnviar" id="btEnviar" onClick="inserirUsuario()">Enviar</button>

@@ -39,7 +39,8 @@ function exibeJson(){
                tr.append("<td id = 'tbNome' name = 'tbNome'>" + resultado[i].dtIn + "</td>");
                tr.append("<td id = 'tbNome' name = 'tbNome'>" + resultado[i].dtFm + "</td>");
                tr.append("<td id = 'tbNome' name = 'tbNome'>" + resultado[i].Nome + "</td>");
-               tr.append("<td id = 'tbNome' name = 'tbNome'>" + resultado[i].dtProg + "</td>");
+               tr.append("<td id = 'tbNome' name = 'tbNome'> <input type='date' name='dtprog' id = 'dtprog'> </input> </td>");
+               tr.append("<td id = 'tbNome' name = 'tbNome'> <button onclick='boom()'> atualizar </button>  </td>");
                $("#view").append(tr);
        }
        
@@ -52,6 +53,21 @@ function exibeJson(){
            alert("ok"+d2+"           "+d1);
        }else{
            alert("deu ruim"+d2+"          "+d1);
+       }
+   }
+   function boom(){
+       alert("BOOM!");
+   }
+   function createSelect(sel){
+      var arrayOp=["Inicio", "Meio","Fim"];
+      var arrayVal=["INICIO","MEIO","FIM"];
+      var selList = document.createElement("select");
+       i = 0;
+       for (i=0;i<3;i++){
+        var option = document.createElement("option");
+        option.value = array[i];
+        option.text = array[i];
+        selectList.appendChild(option);
        }
    }
     

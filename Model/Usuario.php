@@ -27,6 +27,11 @@ public function novoUsuario($n, $sn, $c, $tc, $cpf,  $l, $s){
 public function getLogin(){
     return $this->login;
 }
+public function getId(){
+    $dao = new DAOUsuario();
+    $this->id = $dao->buscaId($this->login, $this->senha);
+    return $this->id;
+}
 public function getSenha(){
     return $this->senha;
 }
