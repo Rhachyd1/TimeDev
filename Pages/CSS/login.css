@@ -1,0 +1,61 @@
+#txtLogin,#txtSenha{
+    align-content: center;
+    margin:5px;
+    border:none;
+    height: 35px;
+    text-align: center;   
+}
+#divLogin{
+
+    width:200px;
+    background: linear-gradient(white, lightblue);
+}
+#formulario{
+    text-align: center;
+    
+}
+#btLogin{
+  display: inline-block;
+  border-radius: 4px;
+  background-color: lightblue;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+  padding: 20px;
+  width: 90px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+#btLogin span{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    
+}
+#btLogin span:after{
+    content:'\00bb';
+    position: absolute;
+    opacity: 0;
+    top:0;
+    right: -20px;
+    transition: 0.5;    
+}
+#btLogin:hover{
+ width: 100px;
+ transition: 0.5s;
+}
+#btLogin:hover span{
+    padding-right: 25px;
+   
+}
+#btLogin:hover span:after{
+    opacity: 1;
+    right:0;
+}
+#systemdev{
+    align-items: center;
+    width:100%;
+}
