@@ -45,12 +45,20 @@ function inserirUsuario(){
         login: document.getElementById("txtLogin").value,
         senha: document.getElementById("txtSenha").value,
     };
+    var jsonEnd = {
+        rua: document.getElementById("txtRua").value,
+        bairro: document.getElementById("txtBairro").value,
+        telRes: document.getElementById("txtTelRes").value,
+        estado: document.getElementById("vlEstado").value
+       
+    };
    var user = JSON.stringify(jsonUsu);
+   var end = JSON.stringify(jsonEnd);
     $.ajax({
         url: "../Controller/controlaUsuario.php",
         data:{
             usuario: user,
-            endereco: null
+            endereco: end
         },
         type: "POST"
     }).done(function(resposta){

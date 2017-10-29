@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/Javascript" src="../Javascript/AdProjeto/atProjeto.js"></script>
+        <link rel="stylesheet" type="text/css" href="../CSS/AdProjeto.css">
+    </head>
+    <body>
+        <div id="visualizar">            
+            <label><h3>Visualiza Projeto (aquiTemUpdate) </h3></label>
+            <br>
+            <h3>Lembrete: <br> Corrigir: Corrige os campos DtInicio, DTFim, NomeProjeto,Fase
+                          <br> Atualizar: Atualiza o Campo DtProrrogada </h3>
+            <table id="view">
+            <tr>
+                <th><label>IdProjeto</label> </th>
+                <th><label>Fase</label> </th>
+                <th><label>DtInicio</label> </th>
+                <th><label>DtFim</label> </th>
+                <th><label>NomeProjeto</label> </th>
+                <th><label>DtProrrogada</label></th>
+                <th><label>Painel</label></th>
+            </tr>
+           </table>
+           <button onclick="exibeJson()"> Exibir </button>      
+    </div>
+    <div id ="teste">
+        <button onclick="montaSelect()">Teste</button>
+    </div>
+    </body>
+</html>
