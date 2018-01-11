@@ -26,7 +26,7 @@ public function __constructor(){
            $a["horaEntrada"]= $linha["HoraEntrada"];
            $a["horaSaida"]= $linha["HoraSaida"];
            $a["HorasAcumuladas"]= $linha["HoraAcumulada"];
-           $a["horasDevidas"]= $linha["HoraDevida"];
+           $a["HorasDevidas"]= $linha["HoraDevida"];
            $a["DataTrab"]= $linha["DataHora"];
            array_push($jsonHoras,$a);
         }

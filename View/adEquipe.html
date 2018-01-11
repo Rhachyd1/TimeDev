@@ -1,0 +1,49 @@
+<html>
+    <head>
+     <script src="../Libs/jquery-3.2.1.js"></script>
+     <script type="text/Javascript" src="../Javascript/adEquipe.js"></script>
+     <link rel="stylesheet" type="text/css" href="../CSS/adEquipe.css">
+</head>
+<body>
+        <button onclick="getUsuarios()">Teste</button>
+        
+    <h3>Adiciona Equipe</h3>
+    <button onclick="escondePainel('#pnlEquipe')">Painel</button>
+    <div id = "pnlEquipe" class="approveTermsContainer">
+                Nome Equipe:<input type="text"><br>
+            <div class="newItems">
+            <b>Empregados:</b><br/>
+                       <select multiple="multiple" id='lstBox1'>
+                          
+                    </select>
+            </div>
+            <div class="newItems">
+             <b>Projeto:</b><br/>
+               <select multiple="multiple" id='lstBox3'>
+                                      
+                </select>
+             </div>
+            <div class="transferBtns">
+              <input type='button' id='btnRight' value ='  >  '/>
+              <br/><input type='button' id='btnLeft' value ='  <  '/>
+              <div class="submitContainer">
+              <input type="submit" />
+              </div>
+            </div>
+            <div class="approvedItems">
+                    <b>Equipe </b><br/>
+                    <select multiple="multiple" id='lstBox2'>
+                    </select>
+            </div>
+            <div class="approvedItems">
+                        <b>Projeto </b><br/>
+                        <select multiple="multiple" id='lstBox4'>
+                        </select>
+                </div>
+     </div>
+     <h3>Editar Equipe</h3>
+     <button onclick="escondePainel()">Painel</button>     
+        Nome Equipe:<input type="text"><br>
+
+</body>
+</html>

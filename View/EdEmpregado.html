@@ -1,0 +1,49 @@
+<html>
+<head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/Javascript" src="../Javascript/user/edUser.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="../Libs/jquery-3.2.1.js"></script> 
+</head>
+<body>
+    <div class="container">
+        <button onclick="escondeBusca()">Esconder</button>
+        <div id="busca" class="form-group">
+            <label> Nome  </label> <input id="txt1" type="text"></input>
+            <label> Sobrenome  </label> <input type="text"></input>
+            <label> campo  </label> <input type="text"></input>
+            <label> campo  </label> <input type="text"></input>
+            <label> campo  </label> <input type="text"></input>
+            <button onclick="Busca()">Buscar</button>
+        </div>
+    </div>
+    <div>
+        <h3>Tabela</h3>
+    <div>
+    <table id = 'usuario' class="table-responsive">
+        <tr>
+            <th>Usuario</th>
+            <th>Nome</th>
+            <th>Sobrenome</th>
+            <th>Telefone</th>
+            <th>CPF</th>
+            <th>Cargo</th>
+            <th>Endereco</th>
+            <th>Rua</th>
+            <th>Bairro</th>
+            <th>Telefone Res.</th>
+            <th>CEP</th>
+            <th>Estado</th>
+            <th>Municipio</th>
+            <th>Painel</th>
+        </tr>       
+    </table>
+   </div> 
+      
+</div>
+
+    
+    <button onclick="buscaUsuario()">Busca</button>
+</body>
+</html>

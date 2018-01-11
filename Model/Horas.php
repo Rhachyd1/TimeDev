@@ -1,5 +1,5 @@
 <?php 
-
+    include_once '../Persistence/DAO_Object/DAOHoras.php';
 class Horas{
 
     private $idlog;
@@ -29,26 +29,10 @@ class Horas{
      public function getDataTrab(){
         return $this->DataTrab;   
      }
-    public function exibeHoras(Conexao $con, $id){
-        $query = $con->retornaConexao();
-        $sql="SELECT * FROM HORAS WHERE FKEMPREGADO='$id'";
-        $jsonHoras=[];
-        $a=[
-            "horaEntrada"=>"",
-           "horaSaida"=>"",
-           "HorasAcumuladas"=>"",
-           "HorasDevidas"=>"",
-           "DataTrab"=>""];
-        $result = $query->query($sql);
-        while ($linha = $result->fetch(PDO::FETCH_ASSOC)){
-           $a["horaEntrada"]= $linha["HoraEntrada"];
-           $a["horaSaida"]= $linha["HoraSaida"];
-           $a["HorasAcumuladas"]= $linha["HoraAcumulada"];
-           $a["horasDevidas"]= $linha["HoraDevida"];
-           $a["DataTrab"]= $linha["DataHora"];
-           array_push($jsonHoras,$a);
-        }
-        return $jsonHoras;    
+    public function exibeHoras($id){
+        $dao = new DAOHoras();
+        $j = $dao->exibeHoras($id);
+        return $j;
     }
 
     public function iniciaDia($id){
@@ -56,9 +40,6 @@ class Horas{
         $dao->iniciaDia($this->horaEntr, $this->DataTrab, $id);
     }
 
-    public function atualizaDia(Conexao $con, $id){
-      //Update  
-    }
     
 }
 
