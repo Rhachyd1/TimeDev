@@ -1,7 +1,4 @@
 <?php 
-
-include_once '../Persistence/DAO_Object/DAOUsuario.php';
-include_once '../Persistence/DAO_Object/DAOHoras.php';
 include_once '../Model/Usuario.php';
 include_once '../Model/Horas.php';
    

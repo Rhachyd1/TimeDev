@@ -1,0 +1,62 @@
+<html>
+<head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/Javascript" src="../Javascript/user/edUser.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="../Libs/jquery-3.2.1.js"></script> 
+</head>
+<body>
+    <div class="container">
+        <button onclick="escondeBusca()">Esconder</button>
+        <div id="busca" class="form-group">
+            <label> Nome  </label> <input id="txtNome" type="text"></input>
+            <label> Sobrenome  </label> <input id="txtSobr" type="text"></input>
+            <label> CPF  </label> <input id="txtTRes" type="text"></input>
+            <label> Telefone Celular  </label> <input id="txtTCel" type="text"></input>
+            <label> Matricula  </label> <input id="txtMat" type="text"></input>
+            <button onclick="buscaUsuario()">Buscar</button>
+        </div>
+    </div>
+    <div>
+        <div style="flex">
+            <h3> Dados Usuario </h3>
+            <input type="hidden" disabled id="tId" value=""><br>
+            Nome: <input type="text" id="tNome" name="txtNome" onchange="validaCampo('txtNome' , 'lblNome')"> </input> <label id="lblNome">a</label> <br>
+            Sobrenome: <input type="text" id="tSobrenome" name="txtSobrenome" onchange="validaCampo('txtSobrenome','lblSobr')"> </input> <label id="lblSobr">a</label> <br>
+            Telefone Celular: <input type="text" id="tTelCel" name="txtTelCel" onchange="validaCampo('txtTelCel','lblCel')"> </input> <label id="lblCel">a</label> <br>
+            Cargo: <select onchange="validaCampo('vlCargo','lblSel')" name="selCargo" id="vlCargo">
+                    <option value="vazioCar"></option>
+                    <option value="Usuario">Usuario</option>
+                    <option value="Gestor">Gestor</option>
+                    <option value="Administrador">Administrador</option>
+                    </select> <label id="lblSel">a</label> <br>
+            Cpf: <input type="text" name="txtCpF" onchange="validaCampo('txtCpf','lblCpf')" id="tCpf"> </input> <label id="lblCpf">a</label> <br>
+            Matricula: <input type="text" disabled name="txtCpF" onchange="validaCampo('txtCpf','lblCpf')" id="tMat"> </input> <label id="lblCpf">a</label> <br>
+            
+        </div>
+        <div style="flex">
+            <h3> Dados EndereÃ§o Usuario </h3>
+            Rua: <input type="text" id="tRua"> </input> <br>
+            Bairro: <input type="text"id="tBairro"> </input> <br>
+            Estado: <select name="selEstado" id="vlEstado" >
+                    <option value="vazioEs"></option>
+                    <option value="RJ">RJ</option>
+                    <option value="SP">SP</option>
+                    <option value="BH">BH</option>
+                    <option value="MG">MG</option>
+                    </select> <br>
+            Telefone Residencial: <input type="text"id="tTelRes"> </input> <br>
+            Municipio: <input type="text"id="tMun"> </input> <br>
+            Cep: <input type="text"id="tCep"> </input> <br>
+          
+        </div>
+         <button onclick="AtualizaUsuario()">Atualizar</button>
+         <button onclick="RemoveUsuario()">Remover</button>
+      
+</div>
+
+    
+    
+</body>
+</html>

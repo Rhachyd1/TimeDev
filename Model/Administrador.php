@@ -1,30 +1,20 @@
 <?php 
-include "Usuario.php";
+include_once '../Persistence/DAO_Object/DAOUsuario.php';
 
 class Administrador extends Usuario {
 
 
-    public function AdicionaGestor(){
-        
-    }   
-
+    public function insereUsuario(){
+        $dao = new DAOUsuario();
+        $this->matricula;
+        $this->id = $dao->insereUsuario($this->nome, $this->sobrenome,$this->telcel, $this->cpf,$this->cargo,$this->login,$this->senha);
+        $dao->insereMatricula($this->id,$this->matricula);
+    }
+       
     
-    
-    public function insereUsuario(Conexao $con, Usuario $u){
-
-        $sql = "INSERT INTO Usuario  (Fase ,  DtInicio , DtFim , NomeProjeto)
-        VALUES (:fase,  :dtInicio, :dtFim,  :NomeProjeto )   ";
-
-        $smt = $con->retornaConexao();
-        $state = $smt->prepare($sql);
-        $null = null;
-        $state->bindParam(':fase', $dados[':fase']);
-        $state->bindParam(':dtInicio', $dados[':dtIn']);
-        $state->bindParam(':dtFim',$dados[':dtFm']);
-        $state->bindParam(':NomeProjeto',$dados[':nome']);
-         
-        $state -> execute();
-
+    public function RemoveUsuario(){
+        $dao = new DAOUsuario();
+        $dao->RemoveUsuario($this->matricula);
     }
 
 

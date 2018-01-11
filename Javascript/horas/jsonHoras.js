@@ -22,7 +22,7 @@ function es(){
 
 function exibeUsuario(){
    
-   var caminho = '../Controller/JSON/usuario/ctrlUsuario.php';
+   var caminho = '../JSON/jsonUsuario.php';
  
   $.getJSON(caminho, function(resultado){
     var teste = Object.keys(resultado).length-1; 
@@ -36,16 +36,18 @@ function exibeUsuario(){
 }
 function exibeHoras(){
  
-   var caminho = '../Controller/JSON/horas/ctrlHoras.php';
+   var caminho = '../JSON/jsonHoras.php';
  
   $.getJSON(caminho, function(resultado){
     //console.log(resultado);
     var teste = Object.keys(resultado).length;
-
+    console.log(resultado);
     for (var i = 0; i < teste; i++) {
             tr = $('<tr/>');
             tr.append("<td id = 'tbNome' name = 'tbNome'>" + resultado[i].horaEntrada + "</td>");
             tr.append("<td id = 'tbNome' name = 'tbNome'>" + resultado[i].horaSaida + "</td>");
+            tr.append("<td id = 'tbNome' name = 'tbNome'>" + resultado[i].HorasAcumuladas+ "</td>");
+            tr.append("<td id = 'tbNome' name = 'tbNome'>" + resultado[i].HorasDevidas + "</td>");
             tr.append("<td id = 'tbNome' name = 'tbNome'>" + resultado[i].DataTrab + "</td>");
             $("table").append(tr);
     }

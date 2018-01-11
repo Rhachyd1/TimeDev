@@ -12,7 +12,7 @@ class Usuario{
     private $senha;
     private $id;
     private $saidajson;
-
+    private $matricula;
 
 
 public function novoUsuario($n, $sn, $c, $tc, $cpf,  $l, $s){
@@ -22,10 +22,18 @@ public function novoUsuario($n, $sn, $c, $tc, $cpf,  $l, $s){
      $this->login = $l;
      $this->telcel = $tc;
      $this->cpf = $cpf;
-     $this->senha = $s;
+     $this->senha = $s;     
+}
+public function Matricula($m){
+    $this->matricula = $m;
 }
 public function getLogin(){
     return $this->login;
+}
+public function getId(){
+    $dao = new DAOUsuario();
+    $this->id = $dao->buscaId($this->login, $this->senha);
+    return $this->id;
 }
 public function getSenha(){
     return $this->senha;
@@ -43,8 +51,6 @@ public function getSobrenome(){
 public function getDataNasc(){
     return $this->dataNasc;    
 }
-
-
 public function montaLogin($s, $l){
     $this->login = $l;
     $this->senha = $s;
@@ -52,54 +58,50 @@ public function montaLogin($s, $l){
     $ret = $dao->Login($l, $s);
     return $ret;
 }
-  public function exibeUsuario(Conexao $con){
-      session_start();
-      $this->id = $_SESSION['Usuario'];
-      $sql= "SELECT NOME, SOBRENOME, CPF FROM EMPREGADO WHERE IDEMPREGADO='$this->id'";
-      $query = $con->retornaConexao();
-      
-    $result = $query->query($sql);
-     $a=[
-         "nome"=>"",
-         "sobrenome"=>"",
-         "cpf"=>"",
-     ];
-    $jsonUsuario=[];
-      while ($linha = $result->fetch(PDO::FETCH_ASSOC)){
-         $a["nome"]= $linha['NOME'];
-         $a["sobrenome"]= $linha['SOBRENOME'];
-         $a["cpf"]= $linha['CPF'];
-        array_push($jsonUsuario,$a);
-      }
-     $this->saidajson = $jsonUsuario;
-     
+  public function exibeUsuario($i){
+      $dao = new DAOUsuario();
+     $j = $dao->exibeUsuario($i);
+      return $j;     
   } 
- public function exibeTodos(Conexao $con){      
-      
-      $sql= "SELECT * FROM EMPREGADO";
-      $query = $con->retornaConexao();
-      $result = $query->query($sql);
-     $i=0;
-     $json=[];
-     $a=[
-         "nome"=>"",
-         "sobrenome"=>"",
-         "cpf"=>"",
-     ];
+ public function exibeTodosEnd(){      
+     $dao = new DAOUsuario();
+     $temp = $dao->ExibeTodosEnd($this->nome, $this->sobrenome, $this->matricula, $this->telcel,$this->cpf); 
+     return $temp;
+     
    
-      while ($linha = $result->fetch(PDO::FETCH_ASSOC)){
-          $a["nome"]= $linha['NOME'];
-          $a["sobrenome"]= $linha['SOBRENOME'];
-          $a["cpf"]= $linha['CPF'];
-          array_push($json,$a);
-      }
-     return $json;
-   
-  }    
+}
+public function codCargo($c){
+    $this->cargo = $c;
+    if ($this->cargo=="Administrador"){
+        $this->matricula="100";
+    }elseif ($this->cargo=="Gestor"){
+        $this->matricula="110";
+    }else{
+        $this->matricula="120";
+    }    
+}    
 public function insereUsuario(){
  $dao = new DAOUsuario();
- $dao->insereUsuario($this->nome, $this->sobrenome,$this->telcel, $this->cpf,$this->cargo,$this->login,$this->senha);
+ $this->matricula;
+ $this->id = $dao->insereUsuario($this->nome, $this->sobrenome,$this->telcel, $this->cpf,$this->cargo,$this->login,$this->senha);
+ $dao->insereMatricula($this->id,$this->matricula);
 }
-
+public function Logoff($i){
+    $dao = new DAOUsuario();
+    $dao->Logoff($i);
+}
+public function AtualizaUsuario(){
+    $dao = new DAOUsuario();
+    $dao->AtualizaUsuario($this->nome, $this->sobrenome,$this->telcel, $this->cargo,$this->cpf,$this->matricula);  
+}
+public function RemoveUsuario(){
+    $dao = new DAOUsuario();
+    $dao->RemoveUsuario($this->matricula);
+}
+public function retornaUsuario(){
+    $dao = new DAOUsuario();
+    $json = $dao->retornaUsuario();
+    return $json;
+}
 }
 ?>

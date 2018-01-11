@@ -19,18 +19,18 @@
                 <th><label>DtFim</label> </th>
                 <th><label>NomeProjeto</label> </th>
                 <th><label>DtProrrogada</label></th>
+                <th><label>Painel</label></th>
             </tr>
            </table>
         </span>
     </div>
 
-            <label><h3>Insere Projeto(nãoHaProrrogaçãoAqui) </h3></label>
+            <label><h3>Insere Projeto</h3></label>
             <button onclick="esconde('inserir')"> visualiza </button>
             <div id="inserir" onload="montaSelect()">            
             <span>
             <table>
-                <tr>
-                 
+                <tr>                 
                  <th><label>Fase</label> </th>
                  <th><label>DtInicio</label> </th>
                  <th><label>DtFim</label> </th>
@@ -38,7 +38,7 @@
                  <th><label>Painel</label></th>
                 </tr>                        
              <tr>
-               <form method="POST" id= "formulario" action="../Controller/ctrlProjeto.php">
+              
                     <td> <select name="selfase" id = "fase">
                             <option value = "INICIO">Inicio</option>
                             <option value = "MEIO">Meio</option>
@@ -49,7 +49,7 @@
                     <td> <input name ="nm" id="Nome" type="text"></input>  </td>
                    
                     <td> <button onclick="enviar()"> enviar </button> <button onclick="limpar()"> limpar </button> </td>
-               </form>
+              
              </tr>      
             </table>
         </span>

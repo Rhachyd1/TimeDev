@@ -1,0 +1,50 @@
+<html>
+    <head>
+     <script src="../Libs/jquery-3.2.1.js"></script>
+     <script type="text/Javascript" src="../Javascript/adEquipe.js"></script>
+     <link rel="stylesheet" type="text/css" href="../CSS/adEquipe.css">
+</head>
+<body>
+        <button onclick="getUsuarios()">Teste</button>
+        
+    <h3>Adiciona Equipe</h3>
+    <button onclick="escondePainel('#adEquipe')">Painel</button>
+    <div id= "adEquipe">
+                Nome Equipe:<input id ="inNome"type="text"> Projeto:<select id="lstBox3" ></select>
+                <br>
+                <button onclick="insereEquipe()">Enviar</button>
+        </div> 
+     <h3>Adicionar Empregados</h3>
+     <button onclick="escondePainel('#edEquipe')">Painel</button>     
+     
+      <div id="edEquipe">
+                Nome Equipe:<input id="bsEquipe" type="text"><br> <button onClick="buscaEquipe()">Buscar</button>
+                <div id = "pnlEquipe" class="approveTermsContainer">               
+                            <div class="newItems">
+                            <b>lstBox1: Empregados:</b><br/>
+                                       <select multiple="multiple" id='lstBox1'>
+                                          
+                                      </select>
+                            </div>
+                <div class="transferBtns">
+                        <input type='button' id='btnRight' value ='  >  '/>
+                        <br/><input type='button' id='btnLeft' value ='  <  '/>
+                        <div class="submitContainer">
+                                <button onclick="atualizaEquipe()">Enviar</button>
+                        </div><br>
+                </div>
+                <div class="approvedItems">
+                        lstBox2:<b id="bEquipe"> Equipe </b><br/>
+                                <select multiple="multiple" id='lstBox2'>
+                                </select>
+                </div>
+        </div>
+        </div> 
+      <h3>Editar Equipe</h3>
+      <button onclick="escondePainel('#rmEquipe')">Painel</button>     
+       
+       <div id="rmEquipe">
+                Nome Equipe:<input type="text"><br>
+       </div> 
+</body>
+</html>

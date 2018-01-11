@@ -22,35 +22,54 @@ function montaSelect(){
     
 }
 
-function validaCampo(c){
-
-    var campo = document.getElementById(c).value;
-    if (campo.trim()===""){
-        alert("Campo inválido");
+function validaCampo(c,d){
+    let campo = document.getElementById(c);
+    let a = document.getElementById(d);
+    let str = campo.value;
+    if (str.trim() ===""){
+        a.innerHTML = "Campo Invalido"
+       
+    }else{
+        a.innerHTML="Ok"
     }
 }
 
 function enviar(){
-window.open("../Controller/controlaUsuario.php");
+    if(window.confirm("Confirmar Envio?")){
+        verInput();
+        alert("foi");
+    }else{
+        alert("foi nao");
+    }
 }
 
 function inserirUsuario(){
 
     var jsonUsu = {
-        nome: document.getElementById("txtNome").value,
-        sobrenome: document.getElementById("txtSobrenome").value,
-        telCel: document.getElementById("txtTelCel").value,
-        cpf: document.getElementById("txtCpf").value,
-        cargo: document.getElementById("vlCargo").value,
-        login: document.getElementById("txtLogin").value,
-        senha: document.getElementById("txtSenha").value,
+        nome: $("#txtNome").val(),
+        sobrenome:  $("#txtSobrenome").val(),
+        telCel:  $("#txtTelCel").val(),
+        cpf:  $("#txtCpf").val(),
+        cargo:  $("#vlCargo").val(),
+        login:  $("#txtLogin").val(),
+        senha:  $("#txtSenha").val()
+    };
+    var jsonEnd = {
+        rua:  $("#txtRua").val(),
+        bairro:  $("#txtBairro").val(),
+        telRes:  $("#txtTelRes").val(),
+        estado:  $("#vlEstado").val(),
+        municipio:  $("#txtMun").val(),
+        cep:  $("#txtCep").val()
+       
     };
    var user = JSON.stringify(jsonUsu);
+   var end = JSON.stringify(jsonEnd);
     $.ajax({
         url: "../Controller/controlaUsuario.php",
         data:{
             usuario: user,
-            endereco: null
+            endereco: end
         },
         type: "POST"
     }).done(function(resposta){
@@ -60,3 +79,4 @@ function inserirUsuario(){
     });
 
 }
+

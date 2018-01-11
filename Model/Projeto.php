@@ -1,5 +1,5 @@
 <?php
-
+include_once '../Persistence/DAO_Object/DAOProjeto.php';
 
 class Projeto{
 
@@ -12,11 +12,23 @@ class Projeto{
 
 
     public function montaProjeto($dados){    
-        $this->fase= $dados[':fase'];
-        $this->dtInicio= $dados[':dtIn'];
-        $this->dtFim= $dados[':dtFm'];
-        $this->nomeProjeto=$dados[':nome'] ;
+        $this->fase= $dados->fase;
+        $this->dtInicio= $dados->dtIn;
+        $this->dtFim= $dados->dtfim;
+        $this->nomeProjeto=$dados->nome ;
 
+    }
+    public function montaAtualizar($dados){    
+        $this->fase= $dados['fase'];
+        $this->dtInicio= $dados['dtIn'];
+        $this->dtFim= $dados['dtfim'];
+        $this->nomeProjeto=$dados['nome'] ;
+        $this->id = $dados['id'];
+
+    }
+    public function adProrrog($p, $i){
+        $this->dtProrrogada = $p;
+        $this->id = $i;
     }
     public function getFase(){
         return $this->fase;
@@ -33,54 +45,32 @@ class Projeto{
     public function getDtProrrogada(){
         return $this->dtProrrogada;
     }
-
-
-
-    public function ExibeProjetos(Conexao $con){
-        $sql = "SELECT * FROM PROJETO ";
-        $query = $con->retornaConexao();
-        $a = [];
-        $jsonProjeto=[];
-        $a=[
-            "fase"=>"",
-        "dtIn"=>"",
-        "dtFm"=>"",
-        "id"=>"",
-        "dtProg"=>"",
-        "Nome"=>""
-        ];
-
-        $result = $query->query($sql);
-
-        while ($linha = $result->fetch(PDO::FETCH_ASSOC) ) {
-            $a=[
-                "fase"=> $linha['Fase'],
-            "dtIn"=> $linha['DtInicio'],
-            "dtFm"=> $linha['DtFim'],
-            "id"=> $linha['IdProjeto'],
-            "dtProg"=> $linha['DtProrrogada'],
-            "Nome"=> $linha['NomeProjeto']
-            ];
-            array_push($jsonProjeto, $a);
-        }
-        return $jsonProjeto;
+    public function prepRemocao($i){
+        $this->id= $i;
     }
 
-    public function AdicionaProjeto(Projeto $p){
-        
 
-        $sql = "INSERT INTO projeto  (Fase ,  DtInicio , DtFim , NomeProjeto)
-        VALUES (:fase,  :dtInicio, :dtFim,  :NomeProjeto )   ";
+    public function ExibeProjetos(){
+       $dao = new DAOProjeto();
+       $json = $dao->ExibeProjetos();
+       return $json;
+    }
 
-        $smt = $con->retornaConexao();
-        $state = $smt->prepare($sql);
-        $null = null;
-        $state->bindParam(':fase', $p->fase);
-        $state->bindParam(':dtInicio', $p->dtInicio);
-        $state->bindParam(':dtFim',$p->dtFim);
-        $state->bindParam(':NomeProjeto',$p->nomeProjeto);
-        
-        $state -> execute();
+    public function AdicionaProjeto(){        
+        $dao = new DAOProjeto();
+        $dao->AdicionaProjeto($this->fase, $this->dtInicio, $this->dtFim, $this->nomeProjeto);
+    }
+    public function ProrrogaProjeto(){
+        $dao = new DAOProjeto();
+        $dao->AtualizaProjeto($this->dtProrrogada, $this->id);
+    }
+    public function AtualizaProjeto(){
+        $dao = new DAOProjeto();
+        $dao->AtualizaProjeto($this->fase, $this->dtInicio, $this->dtFim, $this->nomeProjeto, $this->id);
+    }
+    public function RemoveProjeto(){
+        $dao = new DAOProjeto();
+        $dao->RemoveProjeto($this->id);
     }
 }
 ?>

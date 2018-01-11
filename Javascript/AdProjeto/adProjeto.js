@@ -13,9 +13,29 @@ function esconde(elemento){
       esconde = true;
     }
 }
-  function enviar(){
-    document.getElementById("formulario").submit();
-  }
+function enviar(){
+    let e = document.getElementById("fase");
+
+    let proj = {
+        fase:  e.options[e.selectedIndex].value,
+        nome:  document.getElementById("Nome").value,
+        dtIn:  document.getElementById("dtInicio").value,
+        dtfim: document.getElementById("dtFim").value       
+    }
+    let jp = JSON.stringify(proj);
+   $.ajax({
+       url:"../Controller/ctrlProjeto.php",      
+       data: {
+           jproj: jp,
+           teste: null
+           },
+       type: "POST"       
+       }).done(function(resposta){
+          console.log(resposta);
+       }).fail(function(resposta){
+          console.log(resposta);
+       });
+}
   function limpar(){
 
     document.getElementById("Fase").value=""    ;
@@ -27,7 +47,7 @@ function esconde(elemento){
     
 }
 function exibeJson(){
-    var caminho = '../Controller/JSON/jsonProjeto.php';
+    var caminho = '../JSON/jsonProjeto.php';
     
      $.getJSON(caminho, function(resultado){
        var teste = Object.keys(resultado).length;
@@ -39,12 +59,13 @@ function exibeJson(){
                tr.append("<td id = 'tbNome' name = 'tbNome'>" + resultado[i].dtIn + "</td>");
                tr.append("<td id = 'tbNome' name = 'tbNome'>" + resultado[i].dtFm + "</td>");
                tr.append("<td id = 'tbNome' name = 'tbNome'>" + resultado[i].Nome + "</td>");
-               tr.append("<td id = 'tbNome' name = 'tbNome'>" + resultado[i].dtProg + "</td>");
+               tr.append("<td id = 'tbNome' name = 'tbNome'> <input type='date' name='dtprog' id = 'dtprog'> </input> </td>");
+               tr.append("<td id = 'tbNome' name = 'tbNome'> <button onclick='boom()'> atualizar </button>  </td>");
                $("#view").append(tr);
        }
        
      });
-   }
+}
    function ValidaData(){
        var d1 = new Date(document.getElementById("dtInicio").value);
        var d2 = new Date(document.getElementById("dtFim").value);
@@ -52,6 +73,21 @@ function exibeJson(){
            alert("ok"+d2+"           "+d1);
        }else{
            alert("deu ruim"+d2+"          "+d1);
+       }
+   }
+   function boom(){
+       alert("BOOM!");
+   }
+   function createSelect(sel){
+      var arrayOp=["Inicio", "Meio","Fim"];
+      var arrayVal=["INICIO","MEIO","FIM"];
+      var selList = document.createElement("select");
+       i = 0;
+       for (i=0;i<3;i++){
+        var option = document.createElement("option");
+        option.value = array[i];
+        option.text = array[i];
+        selectList.appendChild(option);
        }
    }
     

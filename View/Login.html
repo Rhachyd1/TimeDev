@@ -1,26 +1,25 @@
 <html>
-<head>
+    <head>
+        
+         <link rel="stylesheet" type="text/css" href="../CSS/login.css">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+         <script src="../Javascript/login.js"></script>
     
-     <link rel="stylesheet" type="text/css" href="../CSS/login.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-     <script src="../Javascript/login.js"></script>
-
-<head>
-<title></title>
-
-<body id="corpo">
-    <div id="divLogin">
-        <img id="systemdev" src="../CSS/systemDev.png">
-        <form method ="POST" id="formulario" action="../Controller/ctrlLogin.php">
-            <input type="text" name="login" id="txtLogin" placeholder="Usuario">
-            <br>
-            <input type="Text" name="senha" id="txtSenha" placeholder="Senha">
-            <br>
-          
-        </form>
-         <button name="buttonLogin" onclick="enviar()" id="btLogin">
-               <span>Login</span>
-               </button>
-    <div>
-</body>
+    <head>
+    <title></title>
+    
+    <body id="corpo">
+        <div id="divLogin">
+            <img id="systemdev" src="../CSS/systemDev.png">
+            <form method ="POST" id="formulario" action="../Controller/ctrlLogin.php">
+                <input type="text" name="login" id="txtLogin" placeholder="Usuario">
+                <br>
+                <input type="Text" name="senha" id="txtSenha" placeholder="Senha">
+                <br>              
+            </form>
+             <button name="buttonLogin" onclick="enviar()" id="btLogin">
+                   <span>Login</span>
+            </button>
+        <div>
+    </body>
 </html>

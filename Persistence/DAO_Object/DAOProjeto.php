@@ -3,7 +3,6 @@
 class DAOProjeto{
 
 public function ExibeProjetos(){
-
     $sql = "SELECT * FROM PROJETO ";
     $con = new Conexao();
     $query = $con->retornaConexao();
@@ -11,52 +10,76 @@ public function ExibeProjetos(){
     $jsonProjeto=[];
     $a=[
         "fase"=>"",
-    "dtIn"=>"",
-    "dtFm"=>"",
-    "id"=>"",
-    "dtProg"=>"",
-    "Nome"=>""
+        "dtIn"=>"",
+        "dtFm"=>"",
+        "id"=>"",
+        "dtProg"=>"",
+        "Nome"=>""
     ];
 
     $result = $query->query($sql);
 
     while ($linha = $result->fetch(PDO::FETCH_ASSOC) ) {
         $a=[
-            "fase"=> $linha['Fase'],
-        "dtIn"=> $linha['DtInicio'],
-        "dtFm"=> $linha['DtFim'],
-        "id"=> $linha['IdProjeto'],
-        "dtProg"=> $linha['DtProrrogada'],
-        "Nome"=> $linha['NomeProjeto']
+            "fase"  => $linha['Fase'],
+            "dtIn"  => $linha['DtInicio'],
+            "dtFm"  => $linha['DtFim'],
+            "id"    => $linha['IdProjeto'],
+            "dtProg"=> $linha['DtProrrogada'],
+            "Nome"  => $linha['NomeProjeto']
         ];
         array_push($jsonProjeto, $a);
     }
     return $jsonProjeto;
 }
 
-public function AdicionaProjeto(Projeto $p){
-    $con = new Conexao();
 
+
+
+
+
+public function AdicionaProjeto($f, $d, $fn, $n){   
+    $con = new Conexao();
     $sql = "INSERT INTO projeto  (Fase ,  DtInicio , DtFim , NomeProjeto)
     VALUES (:fase,  :dtInicio, :dtFim,  :NomeProjeto )   ";
-
     $smt = $con->retornaConexao();
-    $state = $smt->prepare($sql);
-    $null = null;
-    $fase = $p->getfase();
-    $din = $p->getdtInicio();
-    $fim = $p->getdtFim();
-    $nome = $p->getNomeProjeto();
-
-    $state->bindParam(':fase', $fase);
-    $state->bindParam(':dtInicio', $din);
-    $state->bindParam(':dtFim',$fim);
-    $state->bindParam(':NomeProjeto', $nome);
-    
+    $state = $smt->prepare($sql);  
+    $state->bindParam(':fase', $f);
+    $state->bindParam(':dtInicio', $d);
+    $state->bindParam(':dtFim',$fn);
+    $state->bindParam(':NomeProjeto', $n);    
     $state -> execute();
 }
 
+public function AtualizaProjeto($f, $d, $fn, $n, $i){
+    $con = new Conexao();
+    $sql = "UPDATE PROJETO SET FASE = :FASE , DTINICIO= :DTINICIO , DTFIM= :DTFIM, NOMEPROJETO = :NOMEPROJETO WHERE IDPROJETO = :ID";
+    $smt = $con->retornaConexao();
+    $state = $smt->prepare($sql);  
+    $state->bindParam(':FASE', $f);
+    $state->bindParam(':DTINICIO', $d);
+    $state->bindParam(':DTFIM',$fn);
+    $state->bindParam(':NOMEPROJETO', $n);
+    $state->bindParam(':ID', $i);    
+    $state -> execute();
+}
 
-
+public function ProrrogaProjeto($p, $i){
+    $sql = "UPDATE PROJETO SET DTPRORROGADA = :DTPROG WHERE IDPROJETO =:ID";
+    $con = new Conexao();
+    $state = $con->retornaConexao();
+    $smt = $state->prepare($sql);
+    $smt->bindParam(':DTPROG',$p);
+    $smt->bindParam(':ID',$i);
+    $smt->execute();
+}
+public function RemoveProjeto($i){
+    $sql = "DELETE FROM PROJETO WHERE IDPROJETO = :ID";
+    $con = new Conexao();
+    $smt = $con->retornaConexao();
+    $state = $smt->prepare($sql);
+    $state->bindParam(":ID", $i);
+    $state->execute();
+}
 }
 ?>
